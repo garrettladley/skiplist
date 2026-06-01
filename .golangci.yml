@@ -1,0 +1,40 @@
+version: "2"
+
+formatters:
+  enable:
+    - gofumpt
+    - goimports
+
+linters:
+  default: standard
+  enable:
+    - copyloopvar
+    - durationcheck
+    - errcheck
+    - gocritic
+    - godoclint
+    - godot
+    - gomoddirectives
+    - govet
+    - ineffassign
+    - makezero
+    - misspell
+    - nilerr
+    - nolintlint
+    - perfsprint
+    - predeclared
+    - revive
+    - staticcheck
+    - unconvert
+    - unused
+    - wastedassign
+    - whitespace
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+run:
+  timeout: 5m
+  tests: true
+  go: "1.23"
