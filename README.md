@@ -3,6 +3,7 @@
 <p>
     <a href="https://github.com/garrettladley/skiplist/releases"><img src="https://img.shields.io/github/release/garrettladley/skiplist" alt="Latest Release"></a>
     <a href="https://github.com/garrettladley/skiplist/actions"><img src="https://github.com/garrettladley/skiplist/actions/workflows/ci.yml/badge.svg" alt="Build Status"></a>
+    <a href="https://pkg.go.dev/github.com/garrettladley/skiplist#section-documentation"><img src="https://img.shields.io/badge/go.dev-reference-blue?logo=go&logoColor=white" alt="Go.Dev Reference"></a>
 </p>
 
 `skiplist` is a generic ordered map backed by a probabilistic skip list.
