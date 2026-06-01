@@ -52,8 +52,8 @@ jobs:
       fail-fast: false
       matrix:
         go-version:
-          - ${{ env.GO_VERSION_MIN }}
-          - ${{ env.GO_VERSION_LATEST }}
+          - "1.23"
+          - "1.26"
     steps:
       - uses: actions/checkout@v4
         with:
