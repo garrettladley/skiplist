@@ -1,0 +1,39 @@
+name: Release Please
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+env:
+  GO_VERSION: "1.23"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    name: Release Please
+    runs-on: ubuntu-latest
+    steps:
+      - id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      - uses: actions/setup-go@v5
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Warm Go module proxy
+        if: ${{ steps.release.outputs.release_created }}
+        run: go list -m github.com/garrettladley/skiplist@${{ steps.release.outputs.tag_name }}
+
+      - name: Request pkg.go.dev indexing
+        if: ${{ steps.release.outputs.release_created }}
+        run: curl -fsS "https://pkg.go.dev/github.com/garrettladley/skiplist@${{ steps.release.outputs.tag_name }}" >/dev/null || true
